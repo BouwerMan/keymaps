@@ -68,7 +68,10 @@ function scheduleReload() {
 }
 
 function syncWatchers(watch) {
-  const dirs = new Set([configDir, ...watch.dirs]);
+  // Watch the real folder: ~/.config/keymaps may be a symlink (e.g. stowed dotfiles).
+  let realConfigDir = configDir;
+  try { realConfigDir = fs.realpathSync(configDir); } catch { /* not created yet */ }
+  const dirs = new Set([realConfigDir, ...watch.dirs]);
   for (const [d, w] of dirWatchers) if (!dirs.has(d)) { w.close(); dirWatchers.delete(d); }
   for (const d of dirs) {
     if (dirWatchers.has(d)) continue;

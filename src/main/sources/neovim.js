@@ -93,6 +93,7 @@ function toBindings(dump, source) {
   const undescribed = new Map();
   for (const m of dump.maps) {
     if (!m.lhs || SKIP_LHS.test(m.lhs)) continue;
+    if (m.desc === 'which_key_ignore') continue; // which-key's "hide me" marker
     let desc = m.desc;
     if (!desc && typeof m.rhs === 'string' && m.rhs) {
       const plug = /^<Plug>\((.+)\)$/.exec(m.rhs);
