@@ -39,6 +39,7 @@ const state = {
   query: '',
   held: new Set(),     // modifiers currently held (clicked or physically pressed)
   physHeld: new Set(), // the subset that is physically held down
+  latched: new Set(),  // physically held when a dialog opened: kept until it closes
   prefix: [],          // completed steps of a sequence in progress
   pop: null,           // { key, mods, prefix } snapshot for the popover
   trace: null,         // binding id hovered in a list
@@ -222,7 +223,8 @@ function renderStatus() {
   }
   if (state.held.size) {
     const mods = MOD_ORDER.filter((m) => state.held.has(m));
-    parts.push(h('span', { class: 'crumb' }, 'Holding:', mods.map((m) => h('kbd', null, m))));
+    parts.push(h('span', { class: 'crumb' }, state.latched.size ? 'Holding (until closed):' : 'Holding:',
+      mods.map((m) => h('kbd', null, m))));
   }
   if (parts.length) {
     parts.push(h('button', { class: 'btn', onclick: reset }, 'Reset (Esc)'));
@@ -485,22 +487,26 @@ function selectLayout(id) {
 function reset() {
   state.held.clear();
   state.physHeld.clear();
+  state.latched.clear();
   state.prefix = [];
   state.pop = null;
   state.pinned = null;
   render();
 }
 
+// Closing the dialog also lets go of modifiers that were latched by opening it.
 function closePop() {
   state.pop = null;
-  renderPop();
-  renderBoard();
+  for (const m of state.latched) state.held.delete(m);
+  state.latched.clear();
+  render();
 }
 
 function followSequence(ctx) {
   state.prefix = [...ctx.prefix, { mods: [...ctx.mods], key: ctx.key }];
   state.held.clear();
   state.physHeld.clear();
+  state.latched.clear();
   state.pop = null;
   render();
 }
@@ -510,6 +516,7 @@ function pressKey(id) {
   if (mod) {
     if (state.held.has(mod)) state.held.delete(mod); else state.held.add(mod);
     state.physHeld.delete(mod);
+    state.latched.clear(); // toggling by hand: what's held now stays until Esc
     state.pop = null;
     render();
     return;
@@ -527,6 +534,10 @@ function pressKey(id) {
     followSequence(ctx);
     return;
   }
+  // Modifiers held down while opening a dialog stay on after you let go, so you can
+  // look around (or press other keys) without holding them.
+  for (const m of state.physHeld) state.latched.add(m);
+  state.physHeld.clear();
   state.pop = ctx;
   render();
 }
