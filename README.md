@@ -32,8 +32,8 @@ bind = $mainMod, F1, exec, ~/code/keymaps/bin/keymaps --toggle
   Click the key again (or press it, or Esc) to close it.
 - **Click or hold a modifier** (Super, Ctrl, …) and the keyboard relabels with every
   combo using it. Modifier keys show how many combos they unlock. If you're holding
-  modifiers when you open a dialog, they stay on after you let go, until the dialog
-  closes or you press Esc. Modifiers you clicked stay on until Esc.
+  modifiers when you open a dialog, they stay on after you let go. Esc turns them
+  off (as it does for modifiers you clicked).
 - **Sequences** (`<leader>ff`, `<C-w>v`, `gg`) step through: press the first key and
   the keyboard shows what can come next. Dashed keys continue a sequence.
 - **Your real keyboard works** while the window is focused. Esc resets.
