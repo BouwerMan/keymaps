@@ -3,6 +3,11 @@
 A small desktop app that draws your keyboard and shows you what your keybinds do,
 for as many apps as you like (Hyprland, Neovim, tmux, …). Binds live in TOML files.
 
+> [!WARNING]
+> I completely vibe-coded this app using Opus 5.5, I haven't read it myself because I can't be bothered.
+> While I really like the idea, this was mainly created for personal use, but I am open-sourcing it
+> because why not.
+
 ## Run
 
 ```sh
@@ -123,14 +128,14 @@ mode = "normal"     # any string(s); the app adds filter chips for them
 
 ### Key syntax
 
-| Write                      | Means                                        |
-| -------------------------- | -------------------------------------------- |
-| `Super+Shift+Q`            | chord (`Super`/`Mod`/`Win`, `Ctrl`, `Alt`, `Shift`) |
-| `Ctrl+b c`                 | sequence: steps separated by spaces          |
-| `<leader>ff`, `<C-w>v`     | vim notation (`C- S- A- M- D-` modifiers)     |
-| `gg`, `G`, `?`, `$`        | characters; uppercase and symbols imply Shift |
-| `Enter`, `Esc`, `F5`, `PgUp`, `Left`, `Space`, `Tab`, `Del` | named keys |
-| `XF86AudioRaiseVolume`     | drawn on the Q1's knob                       |
+| Write                                                       | Means                                               |
+| ----------------------------------------------------------- | --------------------------------------------------- |
+| `Super+Shift+Q`                                             | chord (`Super`/`Mod`/`Win`, `Ctrl`, `Alt`, `Shift`) |
+| `Ctrl+b c`                                                  | sequence: steps separated by spaces                 |
+| `<leader>ff`, `<C-w>v`                                      | vim notation (`C- S- A- M- D-` modifiers)           |
+| `gg`, `G`, `?`, `$`                                         | characters; uppercase and symbols imply Shift       |
+| `Enter`, `Esc`, `F5`, `PgUp`, `Left`, `Space`, `Tab`, `Del` | named keys                                          |
+| `XF86AudioRaiseVolume`                                      | drawn on the Q1's knob                              |
 
 Anything unrecognized (e.g. `mouse:272`) is still listed, just not drawn on the
 keyboard. `leader` defaults to `\` like in vim; set it under `[aliases]`.
