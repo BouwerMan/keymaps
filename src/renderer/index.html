@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:">
+  <title>Keymaps</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2.5"/><path d="M6 10h1M9.5 10h1M13 10h1M16.5 10h1M7 14h10"/></svg>
+      Keymaps
+    </div>
+    <nav id="apps" class="apps" aria-label="Apps"></nav>
+    <div class="spacer"></div>
+    <label class="layout-pick">
+      <span>Layout</span>
+      <select id="layout"></select>
+    </label>
+    <button id="open-config" class="btn" title="Open the config folder">Open config</button>
+  </header>
+  <div id="errors" class="errors" hidden></div>
+  <main>
+    <section id="board-area" class="board-area">
+      <div id="status" class="status"></div>
+      <div id="board-wrap" class="board-wrap">
+        <div id="board" class="board" hidden></div>
+        <div class="empty">Loading keymaps…</div>
+      </div>
+      <div id="pop" class="pop" hidden></div>
+    </section>
+    <aside class="panel">
+      <div class="panel-head">
+        <input id="search" type="search" placeholder="Search binds…" spellcheck="false" autocomplete="off">
+        <div id="modes" class="modes"></div>
+      </div>
+      <div id="notices" class="notices"></div>
+      <div id="list" class="list"></div>
+    </aside>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

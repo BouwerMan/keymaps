@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Keymaps icon: a small keyboard with one key lit and its label bubble -->
+  <rect x="12" y="12" width="232" height="232" rx="52" fill="#1d1f24"/>
+  <rect x="36" y="112" width="184" height="104" rx="18" fill="#101114"/>
+  <g fill="#30323a">
+    <rect x="48" y="124" width="32" height="24" rx="6"/>
+    <rect x="86" y="124" width="32" height="24" rx="6"/>
+    <rect x="162" y="124" width="32" height="24" rx="6"/>
+    <rect x="48" y="154" width="40" height="24" rx="6"/>
+    <rect x="94" y="154" width="32" height="24" rx="6"/>
+    <rect x="132" y="154" width="32" height="24" rx="6"/>
+    <rect x="170" y="154" width="38" height="24" rx="6"/>
+    <rect x="48" y="184" width="32" height="20" rx="6"/>
+    <rect x="86" y="184" width="84" height="20" rx="6"/>
+    <rect x="176" y="184" width="32" height="20" rx="6"/>
+  </g>
+  <!-- the lit key -->
+  <rect x="124" y="124" width="32" height="24" rx="6" fill="#7bc96f"/>
+  <!-- its bubble -->
+  <path d="M84 40h88a14 14 0 0 1 14 14v26a14 14 0 0 1-14 14h-20l-12 14-12-14H84a14 14 0 0 1-14-14V54a14 14 0 0 1 14-14z" fill="#e7e7ea"/>
+  <rect x="88" y="56" width="58" height="9" rx="4.5" fill="#1d1f24"/>
+  <rect x="88" y="71" width="38" height="9" rx="4.5" fill="#9a9ba3"/>
+</svg>

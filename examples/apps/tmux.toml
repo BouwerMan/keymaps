@@ -1,0 +1,31 @@
+# tmux keybinds, read live from your tmux config (plugins included). Keymaps starts
+# a private, throwaway tmux server to ask for them; your sessions aren't touched.
+#
+# Modes: "normal" (prefix + root keys) and "copy" (vi copy mode).
+# Hand-written binds can use "prefix" for your prefix key, whatever it is, and
+# Ctrl+x / Alt+x for tmux's C-x / M-x.
+name = "tmux"
+color = "#3fb950"
+order = 3
+
+[source]
+type = "tmux"
+# config = "~/.config/tmux/tmux.conf"
+# copy_mode = false   # leave out copy-mode keys
+
+# ---- plugin keys only show up as "Open <plugin>", so name them ----
+[groups."Plugins"]
+"prefix I" = "Install plugins (tpm)"
+"prefix U" = "Update plugins (tpm)"
+"prefix Alt+u" = "Remove unlisted plugins (tpm)"
+"prefix y" = "Copy command line (tmux-yank)"
+"prefix Y" = "Copy pane's working dir (tmux-yank)"
+"prefix /" = "Regex search (copycat)"
+"prefix Ctrl+f" = "Search file names (copycat)"
+"prefix Ctrl+g" = "Search git status files (copycat)"
+"prefix Alt+h" = "Search SHA hashes (copycat)"
+"prefix Ctrl+u" = "Search URLs (copycat)"
+"prefix Ctrl+d" = "Search numbers (copycat)"
+"prefix Alt+i" = "Search IP addresses (copycat)"
+"prefix u" = "Open a URL from the pane (fzf-url)"
+"prefix F" = "Fuzzy-find tmux commands (tmux-fzf)"

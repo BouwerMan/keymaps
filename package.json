@@ -1,0 +1,18 @@
+{
+  "name": "keymaps",
+  "version": "0.1.0",
+  "description": "Visual keybind cheat sheet for any app, driven by TOML config files",
+  "main": "src/main/main.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test test/"
+  },
+  "dependencies": {
+    "smol-toml": "^1.9.1"
+  },
+  "devDependencies": {
+    "electron": "^44.8.0"
+  },
+  "desktopName": "keymaps.desktop"
+}

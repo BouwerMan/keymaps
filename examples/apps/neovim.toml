@@ -1,0 +1,99 @@
+# Neovim keybinds, read live from your Neovim config (re-read whenever it changes).
+#
+# Anything written below is merged in: if the keys match an imported map, your text
+# replaces its description; otherwise it's added. That's handy for maps without a
+# description, buffer-local maps (LSP), and vim built-ins (gg, dd, ...) that aren't
+# "mappings" at all.
+#
+# Key syntax is vim-ish: <leader>ff, <C-w>v, gg, G (= Shift+g). Modes: normal,
+# visual, insert, ... (or n, x, i).
+name = "Neovim"
+color = "#7bc96f"
+order = 2
+
+[source]
+type = "neovim"
+modes = ["n", "x", "i"]
+# exclude = ["<leader>u"]   # hide maps starting with these keys
+
+[aliases]
+leader = "Space"
+
+# ---- your own maps (lua/config/keymaps.lua) ----
+[groups."My maps"]
+"jk" = { desc = "Exit insert mode", mode = "insert" }
+"<leader>nh" = "Clear search highlights"
+"x" = { desc = "Delete char (without yanking)", mode = "normal" }
+"Y" = { desc = "Yank to end of line", mode = "normal" }
+"D" = { desc = "Delete to end of line", mode = "normal" }
+"C" = { desc = "Change to end of line", mode = "normal" }
+
+# ---- plugin maps that have no description ----
+[groups."Tmux navigator"]
+"<C-h>" = { desc = "Pane/window left", mode = "normal" }
+"<C-j>" = { desc = "Pane/window down", mode = "normal" }
+"<C-k>" = { desc = "Pane/window up", mode = "normal" }
+"<C-l>" = { desc = "Pane/window right", mode = "normal" }
+"<C-\\>" = { desc = "Previous pane/window", mode = "normal" }
+
+[groups.Flash]
+"f" = { desc = "Find char forward (flash)", mode = ["normal", "visual"] }
+"F" = { desc = "Find char backward (flash)", mode = ["normal", "visual"] }
+"t" = { desc = "Till char forward (flash)", mode = ["normal", "visual"] }
+"T" = { desc = "Till char backward (flash)", mode = ["normal", "visual"] }
+";" = { desc = "Repeat f/t (flash)", mode = ["normal", "visual"] }
+"," = { desc = "Repeat f/t backward (flash)", mode = ["normal", "visual"] }
+
+# ---- LazyVim LSP maps: only exist while a language server is attached ----
+[groups.LSP]
+"gd" = { desc = "Goto definition", mode = "normal", note = "LSP attached" }
+"gr" = { desc = "References", mode = "normal", note = "LSP attached" }
+"gI" = { desc = "Goto implementation", mode = "normal", note = "LSP attached" }
+"gy" = { desc = "Goto type definition", mode = "normal", note = "LSP attached" }
+"gD" = { desc = "Goto declaration", mode = "normal", note = "LSP attached" }
+"K" = { desc = "Hover docs", mode = "normal", note = "LSP attached" }
+"gK" = { desc = "Signature help", mode = "normal", note = "LSP attached" }
+"<leader>ca" = { desc = "Code action", mode = ["normal", "visual"], note = "LSP attached" }
+"<leader>cr" = { desc = "Rename symbol", mode = "normal", note = "LSP attached" }
+"<leader>cR" = { desc = "Rename file", mode = "normal", note = "LSP attached" }
+"<leader>cl" = { desc = "LSP info", mode = "normal", note = "LSP attached" }
+
+# ---- vim built-ins ----
+[groups."Vim: motion"]
+"gg" = { desc = "First line", mode = "normal" }
+"G" = { desc = "Last line", mode = "normal" }
+"w" = { desc = "Next word", mode = "normal" }
+"b" = { desc = "Previous word", mode = "normal" }
+"e" = { desc = "End of word", mode = "normal" }
+"^" = { desc = "First non-blank char", mode = "normal" }
+"$" = { desc = "End of line", mode = "normal" }
+"%" = { desc = "Matching bracket", mode = "normal" }
+"<C-d>" = { desc = "Half page down", mode = "normal" }
+"<C-u>" = { desc = "Half page up", mode = "normal" }
+"}" = { desc = "Next paragraph", mode = "normal" }
+"{" = { desc = "Previous paragraph", mode = "normal" }
+"<C-o>" = { desc = "Jump back", mode = "normal" }
+"<C-i>" = { desc = "Jump forward", mode = "normal" }
+
+[groups."Vim: editing"]
+"u" = { desc = "Undo", mode = "normal" }
+"<C-r>" = { desc = "Redo", mode = "normal" }
+"dd" = { desc = "Delete line", mode = "normal" }
+"yy" = { desc = "Yank line", mode = "normal" }
+"p" = { desc = "Paste after", mode = "normal" }
+"P" = { desc = "Paste before", mode = "normal" }
+"ciw" = { desc = "Change inner word", mode = "normal" }
+"." = { desc = "Repeat last change", mode = "normal" }
+"o" = { desc = "New line below", mode = "normal" }
+"O" = { desc = "New line above", mode = "normal" }
+"A" = { desc = "Append at end of line", mode = "normal" }
+"I" = { desc = "Insert at line start", mode = "normal" }
+"i" = { desc = "Insert mode", mode = "normal" }
+"v" = { desc = "Visual mode", mode = "normal" }
+"V" = { desc = "Visual line mode", mode = "normal" }
+"<C-v>" = { desc = "Visual block mode", mode = "normal" }
+
+[groups."Vim: search"]
+"/" = { desc = "Search forward", mode = "normal" }
+"?" = { desc = "Search backward", mode = "normal" }
+"*" = { desc = "Search word under cursor", mode = "normal" }

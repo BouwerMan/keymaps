@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# Launch Keymaps from anywhere. Extra args pass through, e.g.: keymaps --app neovim --toggle
+DIR="$(cd "$(dirname "$(readlink -f "$0")")/.." && pwd)"
+exec "$DIR/node_modules/.bin/electron" "$DIR" "$@"

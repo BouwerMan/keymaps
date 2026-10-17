@@ -1,0 +1,51 @@
+#!/usr/bin/env sh
+# Adds Keymaps to your app launcher (~/.local/share/applications) with its icon.
+# Re-run it if you move this folder. Remove with: bin/install-desktop --uninstall
+set -e
+DIR="$(cd "$(dirname "$(readlink -f "$0")")/.." && pwd)"
+DATA="${XDG_DATA_HOME:-$HOME/.local/share}"
+DESKTOP="$DATA/applications/keymaps.desktop"
+ICON_SVG="$DATA/icons/hicolor/scalable/apps/keymaps.svg"
+ICON_PNG="$DATA/icons/hicolor/256x256/apps/keymaps.png"
+
+if [ "$1" = "--uninstall" ]; then
+  rm -f "$DESKTOP" "$ICON_SVG" "$ICON_PNG"
+  echo "Removed Keymaps from the app launcher."
+  exit 0
+fi
+
+mkdir -p "$(dirname "$DESKTOP")" "$(dirname "$ICON_SVG")" "$(dirname "$ICON_PNG")"
+cp "$DIR/assets/keymaps.svg" "$ICON_SVG"
+cp "$DIR/assets/keymaps.png" "$ICON_PNG"
+
+cat > "$DESKTOP" <<DESKTOP_FILE
+[Desktop Entry]
+Type=Application
+Name=Keymaps
+GenericName=Keybind cheat sheet
+Comment=See your keybinds for Neovim, Hyprland, tmux and more on your keyboard
+Exec="$DIR/bin/keymaps" %U
+Icon=keymaps
+Terminal=false
+Categories=Utility;
+Keywords=keybinds;shortcuts;cheatsheet;keyboard;neovim;hyprland;tmux;
+StartupWMClass=keymaps
+StartupNotify=true
+Actions=neovim;hyprland;tmux;
+
+[Desktop Action neovim]
+Name=Neovim binds
+Exec="$DIR/bin/keymaps" --app neovim
+
+[Desktop Action hyprland]
+Name=Hyprland binds
+Exec="$DIR/bin/keymaps" --app hyprland
+
+[Desktop Action tmux]
+Name=tmux binds
+Exec="$DIR/bin/keymaps" --app tmux
+DESKTOP_FILE
+
+command -v update-desktop-database >/dev/null && update-desktop-database "$DATA/applications" 2>/dev/null || true
+command -v gtk-update-icon-cache >/dev/null && gtk-update-icon-cache -q -t "$DATA/icons/hicolor" 2>/dev/null || true
+echo "Installed $DESKTOP"

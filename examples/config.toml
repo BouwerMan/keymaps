@@ -1,0 +1,9 @@
+# Keymaps settings. Everything here is optional.
+
+# Keyboard layout to start with. Built-ins:
+#   keychron-q1-max, ansi-60, ansi-tkl, ansi-full
+# or the file name (without .toml) of anything in layouts/.
+layout = "keychron-q1-max"
+
+# App to start on (file name in apps/ without .toml). Defaults to the last one you used.
+# app = "hyprland"

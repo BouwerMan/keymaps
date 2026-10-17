@@ -1,0 +1,22 @@
+# Hyprland keybinds, read live from ~/.config/hypr/hyprland.lua (the 0.55+ Lua
+# format) or hyprland.conf. Re-read whenever they change.
+#
+# Descriptions: hl.bind's `description` (Lua), or for .conf files `bindd`, a
+# trailing "# comment", or a summary of the dispatcher ("Go to workspace 3").
+# In Lua configs, "-- Section -----" comments above binds become groups.
+#
+# Anything written below is merged in: same keys = replace the description,
+# new keys = add a bind. Key syntax: Super+Shift+Q, $mainMod+Return, ...
+name = "Hyprland"
+color = "#58e1ff"
+order = 1
+
+[source]
+type = "hyprland"
+# path = "~/.config/hypr/hyprland.lua"   # or a list: first one that exists wins
+
+[aliases]
+"$mainMod" = "Super"
+
+# [groups.Apps]
+# "$mainMod+Return" = "Terminal"
